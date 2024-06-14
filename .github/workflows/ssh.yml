@@ -24,7 +24,5 @@ jobs:
 
       - name: Run SSH connection script
         env:
-          HOST: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USERNAME }}
-          PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          ACCOUNTS: ${{ secrets.ACCOUNTS_JSON }}
         run: python ssh.py
