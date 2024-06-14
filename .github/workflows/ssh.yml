@@ -1,0 +1,30 @@
+name: SSH Connect
+
+on:
+  schedule:
+    - cron: '0 9 */7 * *'  # 每天午夜执行，可以根据需要修改 cron 表达式
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install paramiko
+
+      - name: Run SSH connection script
+        env:
+          HOST: ${{ secrets.SSH_HOST }}
+          USERNAME: ${{ secrets.SSH_USERNAME }}
+          PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: python path/to/your/script.py
