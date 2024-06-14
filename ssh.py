@@ -8,7 +8,7 @@ accounts_json = os.getenv('ACCOUNTS')
 accounts = json.loads(accounts_json)
 
 # 尝试通过SSH连接的函数
-def ssh_connect(host, username, password):
+def ssh_connect(host, username, password, bark):
     transport = None
     try:
         transport = paramiko.Transport((host, 22))
@@ -32,4 +32,4 @@ def ssh_connect(host, username, password):
 
 # 循环执行任务
 for account in accounts:
-    ssh_connect(account['host'], account['username'], account['password'])
+    ssh_connect(account['host'], account['username'], account['password'], account["bark"])
