@@ -27,4 +27,4 @@ jobs:
           HOST: ${{ secrets.SSH_HOST }}
           USERNAME: ${{ secrets.SSH_USERNAME }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        run: python path/to/your/script.py
+        run: python ssh.py
