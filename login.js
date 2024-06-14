@@ -61,11 +61,11 @@ async function delayTime(ms) {
         await fetch(`https://api.day.app/X6NGZEReWijSGRiVMmcvwj/Serv00自动登录/账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
         console.log(`账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
       } else {
-        await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 登录失败，请检查账号和密码是否正确。`);
+        if(bark) await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 登录失败，请检查账号和密码是否正确。`);
         console.error(`账号 ${username} 登录失败，请检查账号和密码是否正确。`);
       }
     } catch (error) {
-      await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 登录时出现错误: ${error}`);
+      if(bark) await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 登录时出现错误: ${error}`);
       console.error(`账号 ${username} 登录时出现错误: ${error}`);
     } finally {
       // 关闭页面和浏览器
