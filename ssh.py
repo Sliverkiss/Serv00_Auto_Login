@@ -1,26 +1,19 @@
 import os
+import json
 import paramiko
 
-# 从环境变量中读取 Secrets
-ssh_host = os.getenv('ACCOUNTS_JSON')
-ssh_username = os.getenv('USERNAME')
-ssh_password = os.getenv('PASSWORD')
-
-ssh_info = {  
-    'host': ssh_host,
-    'port': 22,  
-    'username': ssh_username,
-    'password': ssh_password
-}
+# 从环境变量中读取 ACCOUNTS_JSON
+accounts_json = os.getenv('ACCOUNTS_JSON')
+accounts = json.loads(accounts_json)
 
 # 尝试通过SSH连接的函数
-def ssh_connect():
+def ssh_connect(host, port, username, password):
     transport = None
     try:
-        transport = paramiko.Transport((ssh_info['host'], ssh_info['port']))
-        transport.connect(username=ssh_info['username'], password=ssh_info['password'])
+        transport = paramiko.Transport((host, port))
+        transport.connect(username=username, password=password)
         ssh_status = "SSH连接成功"
-        print("SSH连接成功。")
+        print(f"SSH连接成功。")
     except Exception as e:
         ssh_status = f"SSH连接失败，错误信息: {e}"
         print(f"SSH连接失败: {e}")
@@ -28,6 +21,6 @@ def ssh_connect():
         if transport is not None:
             transport.close()
 
-if __name__ == '__main__':
-    # 这里可以放你的主程序逻辑
-    ssh_connect()
+# 循环执行任务
+for account in accounts:
+    ssh_connect(account['host'], account['port'], account['username'], account['password'])
