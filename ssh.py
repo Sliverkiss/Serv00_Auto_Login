@@ -2,7 +2,7 @@ import os
 import paramiko
 
 # 从环境变量中读取 Secrets
-ssh_host = os.getenv('HOST')
+ssh_host = os.getenv('ACCOUNTS_JSON')
 ssh_username = os.getenv('USERNAME')
 ssh_password = os.getenv('PASSWORD')
 
