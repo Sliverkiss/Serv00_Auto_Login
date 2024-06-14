@@ -7,10 +7,10 @@ accounts_json = os.getenv('ACCOUNTS_JSON')
 accounts = json.loads(accounts_json)
 
 # 尝试通过SSH连接的函数
-def ssh_connect(host, port, username, password):
+def ssh_connect(host, username, password):
     transport = None
     try:
-        transport = paramiko.Transport((host, port))
+        transport = paramiko.Transport((host, 22))
         transport.connect(username=username, password=password)
         ssh_status = "SSH连接成功"
         print(f"SSH连接成功。")
@@ -23,4 +23,4 @@ def ssh_connect(host, port, username, password):
 
 # 循环执行任务
 for account in accounts:
-    ssh_connect(account['host'], account['port'], account['username'], account['password'])
+    ssh_connect(account['host'], account['username'], account['password'])
