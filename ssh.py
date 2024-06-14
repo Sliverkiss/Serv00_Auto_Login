@@ -1,10 +1,16 @@
+import os
 import paramiko
 
+# 从环境变量中读取 Secrets
+ssh_host = os.getenv('HOST')
+ssh_username = os.getenv('USERNAME')
+ssh_password = os.getenv('PASSWORD')
+
 ssh_info = {  
-    'host': '',    # 主机地址
+    'host': ssh_host,
     'port': 22,  
-    'username': '',       # 你的用户名，别写错了
-    'password': ''       # 你注册的时候收到的密码或者你自己改了的密码
+    'username': ssh_username,
+    'password': ssh_password
 }
 
 # 尝试通过SSH连接的函数
