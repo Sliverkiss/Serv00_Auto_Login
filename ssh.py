@@ -3,7 +3,7 @@ import json
 import paramiko
 
 # 从环境变量中读取 ACCOUNTS_JSON
-accounts_json = os.getenv('ACCOUNTS_JSON')
+accounts_json = os.getenv('ACCOUNTS')
 accounts = json.loads(accounts_json)
 
 # 尝试通过SSH连接的函数
