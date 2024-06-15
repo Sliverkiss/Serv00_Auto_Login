@@ -58,7 +58,7 @@ async function delayTime(ms) {
         // 获取当前的UTC时间和北京时间
         const nowUtc = formatToISO(new Date());// UTC时间
         const nowBeijing = formatToISO(new Date(new Date().getTime() + 8 * 60 * 60 * 1000)); // 北京时间东8区，用算术来搞
-        await fetch(`https://api.day.app/X6NGZEReWijSGRiVMmcvwj/Serv00自动登录/账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
+        if(bark) await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
         console.log(`账号 ${username} 于北京时间 ${nowBeijing}（UTC时间 ${nowUtc}）登录成功！`);
       } else {
         if(bark) await fetch(`https://api.day.app/${bark}/Serv00自动登录/账号 ${username} 登录失败，请检查账号和密码是否正确。`);
