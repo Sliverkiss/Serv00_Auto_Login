@@ -46,4 +46,4 @@ def ssh_connect(host, username, password, bark, command):
 
 # 循环执行任务
 for account in accounts:
-    ssh_connect(account['host'], account['username'], account['password'], account["bark"], '/home/cxzjswa/.npm-global/bin/pm2 resurrect')
+    ssh_connect(account['host'], account['username'], account['password'], account["bark"], ''cd domains/cxz.dns-dynamic.net && screen node index.js')
