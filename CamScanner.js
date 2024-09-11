@@ -17,8 +17,9 @@
 hostname = *.camscanner.com, *.intsig.net
 
 *************************************/
-
-var chxm1023 = JSON.parse($response.body)??{};
+try{
+  var chxm1023=JSON.parse($response.body);
+}catch(e){}
 const vipa = '/purchase/cs/query_property';
 const vipb = '/queryProperty';
 const tqzx = '/getPrivilegeItem';
