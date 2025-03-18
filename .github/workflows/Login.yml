@@ -1,35 +1,32 @@
-name: Login
+name: Serv00 Auto Login # 工作流名称
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # 允许手动触发工作流
   
   schedule:
-    - cron: '41 9 */7 * *'
+    - cron: '41 9 */5 * *' # 每隔5天，UTC时间9点41分（北京时间17点41分）自动运行
 
 env:
-  ACCOUNTS_JSON: ${{ secrets.ACCOUNTS_JSON }}
+  ACCOUNTS_JSON: ${{ secrets.ACCOUNTS_JSON }} # 从 GitHub Secrets 获取账户信息
 
 jobs:  
   login:  
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  # 运行在最新的 Ubuntu 环境中
   
     steps:  
-      - name: Checkout repository  
+      - name: Checkout repository  # 检出代码
         uses: actions/checkout@v3  
   
-      - name: Set up Node.js  
-        uses: actions/setup-node@v3  
-        with:  
-          node-version: '20.x'  
-  
-      - name: Install dependencies  
-        run: npm install puppeteer  
-  
-      - name: Create accounts.json  
+      - name: Install dependencies # 安装依赖项
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb chromium # 安装 XVFB 和 Chromium
+          npm install puppeteer # 安装 Puppeteer
+
+      - name: Create accounts.json  # 创建 accounts.json 文件
         run: echo "$ACCOUNTS_JSON" > accounts.json  
   
-      - name: Login to website  
+      - name: Login to website  # 运行登录脚本
         run: |  
           set -e  
-          xvfb-run --server-args="-screen 0 1280x1024x24" node login.js
-
+          xvfb-run --server-args="-screen 0 1280x1024x24" node login.js # 使用 XVFB 运行登录脚本
