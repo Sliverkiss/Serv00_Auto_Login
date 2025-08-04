@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
   
   schedule:
-    - cron: '41 9 */7 * *'
+    - cron: '28 9 15 */2 *'
 
 env:
   ACCOUNTS_JSON: ${{ secrets.ACCOUNTS_JSON }}
 
 jobs:  
   login:  
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-22.04  
   
     steps:  
       - name: Checkout repository  
