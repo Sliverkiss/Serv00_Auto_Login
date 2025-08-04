@@ -3,11 +3,11 @@ name: SSH Connect
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 */7 * *'  # 每天午夜执行，可以根据需要修改 cron 表达式
+    - cron: '28 9 15 */2 *'
 
 jobs:
   connect:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout repository
